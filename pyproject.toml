@@ -1,0 +1,61 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "aiogram-gateway"
+dynamic = ["version"]
+description = 'The Gateway API is an HTTP-based interface created for developers looking to deliver automated messages, such as verification codes, to users who registered their phone number on Telegram.'
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "Alex Root Junior", email = "jroot.junior@gmail.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = []
+
+[project.urls]
+Documentation = "https://github.com/aiogram/aiogram-gateway#readme"
+Issues = "https://github.com/aiogram/aiogram-gateway/issues"
+Source = "https://github.com/aiogram/aiogram-gateway"
+
+[tool.hatch.version]
+path = "aiogram_gateway/__about__.py"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:aiogram_gateway tests}"
+
+[tool.coverage.run]
+source_pkgs = ["aiogram_gateway", "tests"]
+branch = true
+parallel = true
+omit = [
+  "aiogram_gateway/__about__.py",
+]
+
+[tool.coverage.paths]
+aiogram_gateway = ["aiogram_gateway"]
+tests = ["tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
